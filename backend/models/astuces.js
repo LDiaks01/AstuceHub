@@ -42,7 +42,7 @@ const Astuces = sequelize.define('Astuces', {
         type: DataTypes.STRING(200),
         allowNull: false
     },
-    astuce:{ 
+    contenu:{ 
         type: DataTypes.STRING(200),
         allowNull: false
     },
