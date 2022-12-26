@@ -2,6 +2,7 @@ import { Button } from 'react-bootstrap';
 import data from '../model/data'
 import '../Styles/App.css'
 import Item from './Item'
+
 function ItemAstuce(){
     return(
         <div>

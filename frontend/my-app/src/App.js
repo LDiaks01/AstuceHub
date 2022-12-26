@@ -1,6 +1,7 @@
 import './Styles/App.css';
 import Acceuil from './Component/Acceuil';
 import Rgister from './Component/Users/Register.js'
+import Profil from './Component/Users/Profil';
 
 
 function  App(){

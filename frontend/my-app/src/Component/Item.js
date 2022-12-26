@@ -1,6 +1,6 @@
 import eye from '../assets/eye.png'
 import '../Styles/App.css'
-const Item = ({titre,desc}) => {
+const Item = ({titre, desc}) => {
     let description = desc;
       
   return(
