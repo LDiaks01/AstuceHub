@@ -1,4 +1,4 @@
-const { sequelize, DataTypes } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const keys = require('../keys/keys');
 
 const sequelize = new Sequelize(keys.databaseName, keys.username, keys.password, {
@@ -29,14 +29,32 @@ const Users = sequelize.define('Users', {
 
     password:{ 
         type: DataTypes.STRING(255),
-        allowNull: false
+        allowNull: true
       },
     
     isAdmin:{ 
-        type: DataTypes.TINYINT,
-        allowNull: false
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
       },
-  
+
+    isBanned :{
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+
+    googleId:{ 
+      type: DataTypes.STRING(255),
+      allowNull: true
+
+    },
+
+    discordId:{ 
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+
     nom:{ 
       type: DataTypes.STRING(45),
       allowNull: false

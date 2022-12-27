@@ -23,13 +23,9 @@ const Astuces = sequelize.define('Astuces', {
     },
 
     isApproved:{
-        type: DataTypes.TINYINT,
-        allowNull: false
-    },
-
-    tags:{
-        type : DataTypes.STRING(45),
-        allowNull: true
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
     },
 
     titre:{ 
