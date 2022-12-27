@@ -1,7 +1,7 @@
-import React from 'react';
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState, useEffect } from 'react';
 import {Formik, Field, Form, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
+import "bootstrap/dist/css/bootstrap.min.css";
 import Header from '../Header';
 
 //Schéma de validation avec Yup
@@ -38,32 +38,49 @@ const validationSchema = Yup.object().shape({
 
 //Création de la variable initialValues
 const initialValues = {
-  nom: "",
-  prenom: "",
-  pseudo: "",
-  email: "",
-  password: "",
-  confirmPassword: "",
-  photo: "",
-};
+    nom: "",
+    prenom: "",
+    pseudo: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    photo: "",
+  };
 
 //Traitement de la soumission du formulaire
 const handleSubmit = (values) => {
   console.log(values)
 };
 
-function Register() {
+
+
+const EditUser = (props) => {
+    const [user, setUser] = useState(props.currentUser)
+    
+    useEffect(
+        () => {
+          setUser(props.currentUser)
+        },
+        [ props ]
+      )
+
+    const handleInputChange = (event) => {
+        const { name, value } = event.target
+    
+        setUser({ ...user, [name]: value })
+    }
+      
   return (
     <div>
         <Header />
         <div className="container">
         <div className="row  bg-white shadow mb-5">
             <div className="col-md-6 offset-md-3 pt-2 mb-5">
-            <h1 className="text-center">Inscription</h1>
+            <h1 className="text-center">Modification du profil</h1>
             <Formik
-                initialValues={initialValues}
-                validationSchema={validationSchema}
-                onSubmit={(values) =>handleSubmit(values)}
+                 initialValues={initialValues}
+                 validationSchema={validationSchema}
+                 onSubmit={(values) =>handleSubmit(values)}
             >
                 {({ resetForm }) => (
                     <Form>
@@ -72,8 +89,9 @@ function Register() {
                             <Field
                                 type="text"
                                 name="nom"
+                                //   value={user.nom}
                                 className="form-control"
-                                placeholder="Nom"
+                                onChange={handleInputChange}
                             />
                             <ErrorMessage
                                 name="nom"
@@ -86,8 +104,9 @@ function Register() {
                             <Field
                                 type="text"
                                 name="prenom"
+                                //   value={user.prenom}
                                 className="form-control"
-                                placeholder="Prénom"
+                                onChange={handleInputChange}
                             />
                             <ErrorMessage
                                 name="prenom"
@@ -100,8 +119,9 @@ function Register() {
                             <Field
                                 type="text"
                                 name="pseudo"
+                                //   value={user.pseudo}
                                 className="form-control"
-                                placeholder="Pseudo"
+                                onChange={handleInputChange}
                             />
                             <ErrorMessage
                                 name="pseudo"
@@ -114,8 +134,9 @@ function Register() {
                             <Field
                                 type="email"
                                 name="email"
+                                //   value={user.email}
                                 className="form-control"
-                                placeholder="Email"
+                                onChange={handleInputChange}
                             />
                             <ErrorMessage
                                 name="email"
@@ -128,8 +149,9 @@ function Register() {
                             <Field
                                 type="password"
                                 name="password"
+                                //   value={user.password}
                                 className="form-control"
-                                placeholder="Mot de passe"
+                                onChange={handleInputChange}
                             />
                             <ErrorMessage
                                 name="password"
@@ -142,8 +164,9 @@ function Register() {
                             <Field
                                 type="password"
                                 name="confirmPassword"
+                                //   value={user.confirmPassword}
                                 className="form-control"
-                                placeholder="Mot de passe"
+                                onChange={handleInputChange}
                             />
                             <ErrorMessage
                                 name="confirmPassword"
@@ -156,7 +179,9 @@ function Register() {
                             <Field
                                 type="file"
                                 name="photo"
+                                //   value={user.photo}
                                 className="form-control"t
+                                onChange={handleInputChange}
                             />
                             <ErrorMessage
                                 name="photo"
@@ -176,13 +201,8 @@ function Register() {
                                 type="submit"
                                 className="btn btn-primary"
                             >
-                                S'inscrire
+                                Enregistré
                             </button>
-                        </div>
-                        <div>
-                            <p className="text-right">
-                            Déjà enregistré ?<a href="#">Connexion</a>
-                            </p>
                         </div>
                     </Form>
                 )}
@@ -193,4 +213,4 @@ function Register() {
     </div>
   )
 }
-export default Register;
+export default EditUser;
