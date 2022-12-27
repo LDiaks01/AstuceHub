@@ -32,3 +32,51 @@ float:right;
   padding-left: 200px;
   float: 200px;;
 } */
+.Gestion{
+  width: 85%;
+  margin-left: 7%;
+  
+}
+.Consulte{
+  width: 60%;
+  margin-left: 20%;
+  background-color: white;
+  border-radius: 12px 12px 12px 12px;
+}
+.image_consult{
+   width: 200px;
+   height: 200px;
+}
+.comment {
+  border-radius: 12px;
+  margin: 20px;
+   background-color: #e3e3e3;
+   padding-left: 10px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+}
+.avatar{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.author{
+  font-weight: bold;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+   font-size: 15px;
+  color: darkred;
+  margin-right: 80%;
+}
+.message {
+   font-weight: 600;
+}
+.supprimer{
+  width: 25px;
+  height: 25px;
+  vertical-align: top;
+  display: inline-block;
+  
+}
