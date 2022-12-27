@@ -2,7 +2,7 @@
 const keys = {
     databaseName : 'api_project_2',
     username :  'root',
-    password : 'root123/',
+    password : 'root',
     host : 'localhost'
 }
 module.exports = keys; 

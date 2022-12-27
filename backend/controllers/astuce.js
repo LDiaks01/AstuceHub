@@ -9,7 +9,7 @@ exports.addAstuce = function(req, res, next) {
     Astuces.create({
         ...req.body,
         creator : req.decodedToken.username,
-        isApproved : 0, //par défaut aucune astuce n'est approuvé à sa création
+        isApproved : false, //par défaut aucune astuce n'est approuvé à sa création
         imageUrl : "à rempllir après"
     })
     .then(()=> {
@@ -24,9 +24,9 @@ exports.addAstuce = function(req, res, next) {
 // recuperer toutes les astuces approuvées
 exports.findAllApprovedAstuces = function(req, res) {
     Astuces.findAll({
-        attributes: ['IdAstuce', 'creator', 'tags','titre', 'infosAstuce', 'contenu', 'imageUrl', 'createdAt', 'updatedAt'],
+        attributes: ['IdAstuce', 'creator','titre', 'infosAstuce', 'contenu', 'imageUrl', 'createdAt', 'updatedAt'],
         where :{
-            isApproved : 1
+            isApproved : true
         }
         //spécification des infos à recuperer
     })
@@ -53,7 +53,7 @@ exports.getAstuce = function(req, res){
                 attributes: ['pseudo', 'imageUrl']
             }]
         }],
-        attributes: ['IdAstuce', 'creator', 'tags','titre', 'infosAstuce', 'contenu', 'imageUrl', 'createdAt', 'updatedAt'],
+        attributes: ['IdAstuce', 'creator','titre', 'infosAstuce', 'contenu', 'imageUrl', 'createdAt', 'updatedAt'],
         where : { IdAstuce : req.query.IdAstuce}
     })
     .then(astuce => {
@@ -74,7 +74,7 @@ exports.findAstucesByUser = function(req, res){
     if(req.params.creator == req.decodedToken.username)
     {
         Astuces.findAll({
-            attributes: ['IdAstuce', 'creator', 'tags','titre', 'infosAstuce', 'contenu', 'imageUrl', 'isApproved', 'createdAt', 'updatedAt'],
+            attributes: ['IdAstuce', 'creator','titre', 'infosAstuce', 'contenu', 'imageUrl', 'isApproved', 'createdAt', 'updatedAt'],
             where :{
                 creator : req.params.creator
             }
