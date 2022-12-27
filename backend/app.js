@@ -13,20 +13,37 @@ const register = require('./routes/register');
 const login = require('./routes/login');
 const profil = require('./routes/profil');
 const astuces = require('./routes/astuce');
+const auth_test = require('./routes/o_auth_login');
+const commentaires = require('./routes/commentaires');
 app.use('/accueil', accueil);
 app.use('/register', register);
 app.use('/login', login);
 app.use('/profil', profil);
 app.use('/astuces', astuces);
+app.use('/auth', auth_test);
+app.use('/commentaires',commentaires);
 
 
-/*
+const Users = require('./models/users');
+const Astuces = require('./models/astuces');
+const Commentaires = require('./models/commentaires');
+
+const { Tags, AstuceTag} = require('./models/Tags');
+
 Users.sync().then(()=>{
+
     Astuces.sync().then(()=>{
-        Commentaires.sync()
+
+        Commentaires.sync().then( ()=>{
+
+            Tags.sync().then(()=>{
+                
+                AstuceTag.sync();
+            });
+        })
     })
 })
-*/
+
 
 
 
