@@ -9,7 +9,7 @@ const Acceuil = () => {
         <div >
             <Header />
             <Acceuil_body/>
-            <ItemAstuce />
+            <ItemAstuce  nombre={2} texte="Liste de quelques astuces"/>
         </div>
     
 );

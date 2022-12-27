@@ -6,7 +6,7 @@ import logo from '../assets/logo.png'
 const Header = () => {
     return(
     <header>
-        <Navbar bg='blue' expand="lg" className='shadow  mb-5 bg-white '>
+        <Navbar bg='blue' expand="lg" className='shadow mb-5 bg-white '>
           <Container>
             <Row>
                 <Navbar.Brand href="#">
