@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Navbar,Nav, Row } from 'react-bootstrap';
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.png';
+import {Link} from "react-router-dom";
 
 
 const Header = () => {
@@ -10,7 +11,7 @@ const Header = () => {
           <Container>
             <Row>
                 <Navbar.Brand href="#">
-                    <img src={logo} alt="logo" width="60" height="60" className='d-inline-block align-top' /> 
+                <Link to="/"><img src={logo} alt="logo" width="60" height="60" className='d-inline-block align-top' /> </Link> 
                 </Navbar.Brand>
             </Row>
             <Row>
@@ -18,13 +19,15 @@ const Header = () => {
             </Row>
             <Row>
                 <Nav className='me-auto'>
-                    <Nav.Link href="#"  className='d-inline-block align-top fw-bold text-primary' >Connexion</Nav.Link>
-                    <Nav.Link href="#"  className='d-inline-block align-top fw-bold text-primary' >S'inscrire</Nav.Link>
+                    <Nav.Link   className='d-inline-block align-top fw-bold text-primary' ><Link to="/Login">Connexion</Link> </Nav.Link>
+                    <Nav.Link href="#"  className='d-inline-block align-top fw-bold text-primary' ><Link to="/Register">S'inscrire</Link> </Nav.Link>
                 </Nav>
             </Row>
-
+            
           </Container>
+        
         </Navbar>
+       
     </header>
    
 );}

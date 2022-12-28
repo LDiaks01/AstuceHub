@@ -1,10 +1,22 @@
 import { Button } from 'react-bootstrap';
-import data from '../model/data'
+import datas from '../model/data'
 import '../Styles/App.css'
-import Item from './Item'
+import Item from './Item';
+import axios  from 'axios';
+import { useEffect, useState } from 'react';
 
 
-function ItemAstuce({nombre,user,texte}){
+function ItemAstuce({nombre, user, texte}){
+    const baseUrl = "http://192.168.137.1:7000/astuces/all/";
+      const[data,setData]= useState([]);
+     useEffect(()=>{
+        axios.get(baseUrl).then((reponse)=>{
+            setData(reponse.data.users.astuces)
+             console.log(reponse)
+        }) 
+     },[])
+   
+
     return(
         <div>
             <h3 className='titleList fw-bold fs-2 text-center mt-1'  >{texte}</h3>
@@ -26,8 +38,8 @@ function ItemAstuce({nombre,user,texte}){
                         </thead>
                         <tbody>
                             
-                        {  data.slice(0,nombre).map((game,index)=>(
-                                            <Item  titre={game.titre}  desc={game.description} user={user} etat={game.etat} />
+                        {  data.map((game,index)=>(
+                                            <Item  titre={game.titre}  desc={game.infosAstuce} user={user} etat={game.isApproved} />
                                         ))
                                     }
                         </tbody>

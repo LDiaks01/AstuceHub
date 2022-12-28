@@ -1,50 +1,88 @@
 import { Button , Card,Avatar } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import data from '../../model/data'
 import '../../Styles/App.css'
 import Header from '../Header';
 import supprimer from '../../assets/Supprimer.png'
+import axios from 'axios';
 
 const Consult_Astuces = () => {
-    const [comment ,setComment] = useState("");
+ const baseUrl = `http://192.168.137.1:7000/astuces/show?IdAstuce=${2}`;
+  const [info,setInfo] = useState("");
+  const [data,setData] = useState([]);
+  const [comment, setComment] = useState("");
+  useEffect(()=>{
+      axios.get(baseUrl).then((reponse)=>{
+        setInfo(reponse.data.users.astuce);
+        setData(reponse.data.users.astuce.Commentaires)
+
+        console.log(reponse.data.users.astuce.Commentaires);
+      })
+  },[]);
+ 
+  const handle =  async (e) => {
+    e.preventDefault( );
+    const formDatax = new FormData();
+     formDatax.append("creator","CamKill");
+
+formDatax.append( "IdAstuce", 2);
+formDatax.append("commentaire", comment);
+
+  
+  const base  = `http://192.168.137.1:7000/commentaire/add/`; 
+   await axios.post (base,
+    formDatax,
+     { 
+     headers: {
+       "Content-type": "multipart/form-data"
+     }
+   }
+     ).then((reponse)=>{
+       console.log(reponse);
+     })
+  }
   return (
     <div>
     <Header  />
  <div className='Consulte'>
  <Card style={{ width: '100%' }}>
-      <Card.Img variant="top" src="https://www.generation-game.com/wp-content/uploads/2020/03/CoD-Warzone-trucs-astuces-pour-gagner-950x509.jpg" />
+      <Card.Img variant="top" src={info.imageUrl} />
       <Card.Body>
-        <Card.Title className='fw-bold'>DMZ:Atterir rapidement sur la carte ou traverser une longue distance en parachute</Card.Title>
+        <Card.Title className='fw-bold'>{info.titre}</Card.Title>
         <Card.Text>
-       champions qui se distinguent par leur mobilité et leurs dégâts. Il existe deux types de combattants. Ce sont des Assassins, leur grande mobilité leur permet d'entrer et de sortir des combats, ayant des capacités qui amplifient radicalement les dégâts pour faire disparaître les champions cibles ennemis ; et les tirailleurs, qui leur permettent de prendre le contrôle de cibles spécifiques et sont capables de subir une quantité importante de dégâts,
-        
+         {info.contenu}
         </Card.Text>
        
       </Card.Body> 
     </Card>
        <h4 className='fw-bold' style={{marginLeft:12}}>Comment  :</h4>
        <div className="form-group">
-      <textarea
+       <form encType='multipart/form-data'  onSubmit={handle}>
+        <textarea
         className="form-control"
         id="exampleFormControlTextarea1"
         rows="5"
         onChange={e=> setComment(e.target.value)}
         value = {comment}
       />
-       <Button style={{margin:12}} >Envoyer</Button>
+       <input type="submit"  text ="Envoyer" className="btn btn-primary"   />
+      
+        </form>
 
     </div>
-        <div className='comment' >
-            <div>
-                <img src = "https://www.generation-game.com/wp-content/uploads/2020/03/CoD-Warzone-trucs-astuces-pour-gagner-950x509.jpg" className='avatar' />
-                <p className='author'>Camara</p>
-                <img src={supprimer}  className="supprimer" />
-            </div>
-            <p className='message'>
-                Je trouve cela top mais nous devons deployer plus d'energie pour utiliser les plaques je trouve ça null
-            </p>
-        </div>
+         {data.map((game)=>(
+          <div className='comment' >
+          <div>
+              <img src = {game.User.imageUrl} className='avatar' />
+              <p className='author'>{game.User.pseudo}</p>
+              <img src={supprimer}  className="supprimer" />
+          </div>
+          <p className='message'>
+             {game.commentaire}
+          </p>
+      </div>
+         ))}
     </div>
     
     </div>

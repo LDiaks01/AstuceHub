@@ -3,8 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from '../Header';
 import {Formik, Field, Form, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
-
-
+import axios from 'axios';
+const baseUrl = "http://192.168.137.1:7000/login/"
 //Schéma de validation avec Yup
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -24,7 +24,12 @@ const initialValues = {
 
 //Traitement de la soumission du formulaire
 const handleSubmit = (values) => {
-  console.log(values)
+          axios.post(baseUrl,
+            values).then((reponse)=>{
+                if(reponse.data.isConnected) {
+                    localStorage.setItem('user', reponse.data);
+                };
+            }).catch((e)=>console.log(e))
 };
 
 function Register() {
@@ -80,7 +85,7 @@ function Register() {
                             </div>
                         <div>
                             <p className="text-right">
-                            Vous n'avez de compte ?<a href="#">Inscrivez-vous</a>
+                            Vous n'avez de compte ? <a href="#">Inscrivez-vous</a>
                             </p>
                         </div>
                     </Form>
