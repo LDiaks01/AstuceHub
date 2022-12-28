@@ -1,7 +1,6 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "run"
@@ -23,5 +22,6 @@
   },
   "devDependencies": {
     "sequelize-cli": "^6.5.2"
-  }
+  },
+  "description": ""
 }
