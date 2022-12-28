@@ -1,5 +1,4 @@
 const multer = require('multer');
-
 //Définition des types de fichiers acceptés par le serveur
 const MIME_TYPES = {
     'image/jpg': 'jpg',
@@ -14,6 +13,8 @@ const MIME_TYPES = {
 
     },
     filename: (req, file, callback) => {
+      
+
       //Géneration du nom du fichier à partir de l'original
       const name = file.originalname.split(' ').join('_');
       const extension = MIME_TYPES[file.mimetype];
