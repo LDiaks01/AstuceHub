@@ -5,7 +5,7 @@ const Users = require('./users');
 const sequelize = new Sequelize(keys.databaseName, keys.username, keys.password, {
     host: keys.host,
     dialect:'mysql',
-    logging: true
+    logging: false
   });
    
 const Astuces = sequelize.define('Astuces', {

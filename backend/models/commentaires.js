@@ -6,7 +6,7 @@ const Astuces = require('./astuces');
 const sequelize = new Sequelize(keys.databaseName, keys.username, keys.password, {
     host: keys.host,
     dialect:'mysql',
-    logging: true
+    logging: false
   });
 
 

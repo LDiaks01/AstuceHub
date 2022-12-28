@@ -41,6 +41,24 @@ exports.findAllApprovedAstuces = function(req, res) {
         res.status(400).send("Erreur lors de la récuperation des astuces");
     })
 }
+// recuperer toutes les astuces qu'elles soient approuvées ou pas
+exports.findAllAstuces = function(req, res) {
+    Astuces.findAll({
+        attributes: ['IdAstuce', 'creator','titre', 'infosAstuce', 'contenu', 'imageUrl', 'isApproved', 'createdAt', 'updatedAt']
+        
+        //spécification des infos à recuperer
+    })
+    .then(astuces =>{
+            res.status(200).send({
+                users : {
+                    astuces : astuces // format json à renvoyer
+                }});
+        })
+    .catch(err =>{
+        console.error(err);
+        res.status(400).send("Erreur lors de la récuperation des astuces");
+    })
+}
 
 // Fonction pour récuperer une astuce et ses commentaires depuis la liste des astuces déjà fournie
 exports.getAstuce = function(req, res){

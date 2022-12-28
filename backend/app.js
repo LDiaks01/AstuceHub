@@ -1,15 +1,28 @@
 const express = require('express');//appel de express
 const app = express();
+/*
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());//pouvoir envoyer les données en format json
+*/
+const bodyParser = require('body-parser');
+//app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const path = require('path');
 app.use('/files', express.static(path.join(__dirname, 'files')));
 
+//cors
+app.use((req, res, next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+    next();
+  });
 
 //routes
 const accueil = require('./routes/accueil');
 const register = require('./routes/register');
+const commentaire = require('./routes/commentaire');
 const login = require('./routes/login');
 const profil = require('./routes/profil');
 const astuces = require('./routes/astuce');
@@ -21,7 +34,7 @@ app.use('/login', login);
 app.use('/profil', profil);
 app.use('/astuces', astuces);
 app.use('/auth', auth_test);
-app.use('/commentaires',commentaires);
+app.use('/commentaire', commentaire);
 
 
 const Users = require('./models/users');

@@ -1,11 +1,12 @@
 const Commentaires = require('../models/commentaires');
 const Users = require('../models/users');
 
-exports.addComment = async(req, res) => {
+
+exports.addComment = (req, res) => {
     console.log("Je suis dans le controller addComment");
 
     const {creator,IdAstuce, commentaire} = req.body;
-
+    console.log('there is an ' + JSON.stringify(req.body) );
     Commentaires.create({
         creator: req.body.creator,
         IdAstuce: req.body.IdAstuce,

@@ -12,18 +12,19 @@ passport.use(
     'login',
 new LocalStrategy(
     {
-        usernameField: 'username',
+        usernameField: 'email',
         passwordField: 'password'
     },
-    function(username, password, done) 
+    function(email, password, done) 
     {
         User.findOne({ 
             where: {
+                email : email
                 //Vérification par pseudo / email
-                [Op.or]: [
-                  { pseudo: username },
-                  { email: username }
-                ]
+               /* [Op.or]: [
+                  { pseudo: email },
+                  { email: email }
+                ]*/
               }
             })
         .then(user => {
