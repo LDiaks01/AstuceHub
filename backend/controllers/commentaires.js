@@ -2,17 +2,17 @@ const Commentaires = require('../models/commentaires');
 const Users = require('../models/users');
 
 
-exports.addComment = (req, res) => {
-    console.log("Je suis dans le controller addComment");
+exports.addComment = async (req, res) => {
+    
 
-    const {creator,IdAstuce, commentaire} = req.body;
-    console.log('there is an ' + JSON.stringify(req.body) );
+    
     Commentaires.create({
         creator: req.body.creator,
         IdAstuce: req.body.IdAstuce,
         commentaire: req.body.commentaire
     })
     .then(() => {
+        console.log('Added comment');
         res.status(201).send("Commentaire ajouté");
     })
     .catch(err => {
@@ -42,6 +42,7 @@ exports.readComment = async(req, res) =>{
         //spécification des infos à recuperer
     })
     .then(commentaires =>{
+        console.log('commentaires envoyés');
         res.status(200).json({
             commentaires : commentaires
         })

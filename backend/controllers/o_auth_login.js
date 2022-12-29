@@ -13,7 +13,7 @@ passport.use(
       },
       (accessToken, refreshToken, profile, cb) => {
         // Vérifiez l'utilisateur en utilisant le profil Google et exécutez le callback
-        console.log("auth reussie via google, p1" + profile.id);
+        console.log("auth reussie via google");
         Users.findOrCreate({
             where: { email: profile.emails[0].value },
             defaults: {

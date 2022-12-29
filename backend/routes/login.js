@@ -17,7 +17,11 @@ router.post('/', function(req,res, next) {
             res.status(401).send("Bad Crédential / Incorrect User");
         }
         //Enfin si l'utilisateur existe
-        if(user)
+        if(user.isBanned)
+        {
+            res.status(401).send("Utilisateur Banni, connexion impossible");
+        }
+        else if(user)
         {
             let token = jwt.sign(
                 {'username' : user.pseudo},
