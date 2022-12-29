@@ -1,13 +1,14 @@
 const express = require('express');//appel de express
 const app = express();
-/*
+
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());//pouvoir envoyer les données en format json
-*/
-const bodyParser = require('body-parser');
-//app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
+/*
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+*/
 const path = require('path');
 app.use('/files', express.static(path.join(__dirname, 'files')));
 
@@ -22,19 +23,21 @@ app.use((req, res, next) => {
 //routes
 const accueil = require('./routes/accueil');
 const register = require('./routes/register');
-const commentaire = require('./routes/commentaire');
+
 const login = require('./routes/login');
 const profil = require('./routes/profil');
 const astuces = require('./routes/astuce');
 const auth_test = require('./routes/o_auth_login');
 const commentaires = require('./routes/commentaires');
+const users = require('./routes/users');
 app.use('/accueil', accueil);
 app.use('/register', register);
 app.use('/login', login);
 app.use('/profil', profil);
 app.use('/astuces', astuces);
 app.use('/auth', auth_test);
-app.use('/commentaire', commentaire);
+app.use('/commentaires', commentaires);
+app.use('/users', users);
 
 
 const Users = require('./models/users');

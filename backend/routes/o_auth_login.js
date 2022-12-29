@@ -30,6 +30,7 @@ router.get('/google/callback', function(req,res, next) {
             //retourner le token de l'utilisateur qui s'est authentifié
             
             res.status(200).send({ 
+                isConnected : true,
                 token : token
             });
         }
@@ -53,7 +54,7 @@ router.get('/discord/callback', function(req,res, next) {
             //Enfin si l'utilisateur existe
             if(user)
             {
-                console.log("auth reussie via google");
+                console.log("auth reussie via discord");
                 let token = jwt.sign(
                     {'username' : user.pseudo},
                     'GROUPE_7_JWT_KEY',
@@ -62,6 +63,7 @@ router.get('/discord/callback', function(req,res, next) {
                 //retourner le token de l'utilisateur qui s'est authentifié
                 
                 res.status(200).send({ 
+                    isConnected : true,
                     token : token
                 });
             }
