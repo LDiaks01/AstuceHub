@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from '../Header';
 import axios from 'axios'
-const baseUrl = "http://192.168.137.1:7000/register/";
+const baseUrl = "http://localhost:3000/register/";
 
 
 

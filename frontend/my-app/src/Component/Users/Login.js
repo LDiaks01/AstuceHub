@@ -4,7 +4,8 @@ import Header from '../Header';
 import {Formik, Field, Form, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
-const baseUrl = "http://192.168.137.1:7000/login/"
+import data from '../../model/data';
+const baseUrl = "http://localhost:3000/login/"
 //Schéma de validation avec Yup
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -27,10 +28,15 @@ const handleSubmit = (values) => {
           axios.post(baseUrl,
             values).then((reponse)=>{
                 if(reponse.data.isConnected) {
-                    localStorage.setItem('user', reponse.data);
+                      reponse.data["email"] = values.email;
+                       console.log(reponse.data.token)
+                     localStorage.setItem('user', JSON.stringify(reponse.data));
+                    
                 };
             }).catch((e)=>console.log(e))
+     
 };
+
 
 function Register() {
   return (
