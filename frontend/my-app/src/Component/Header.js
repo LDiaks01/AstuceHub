@@ -23,7 +23,6 @@ const Header =  () => {
 
           }) 
           setUserInfo(JSON.parse(localStorage.getItem('userInfo')));
-          
     },[]);   
   
     return(
@@ -65,7 +64,8 @@ const Header =  () => {
     
                     
                     <Dropdown.Item ><Link to="/Profil"> Profil </Link></Dropdown.Item>
-                    <Dropdown.Item >Mes Astuces</Dropdown.Item>
+                  {userInfo.isAdmin?<Dropdown.Item ><Link to="/AdminAstuce"> Tous les  Astuces </Link></Dropdown.Item>:
+                   <Dropdown.Item ><Link to="/UserAstuce">Mes Astuces</Link></Dropdown.Item>  }  
                     <Dropdown.Item ><Link to="/Publier"> Publier une Astuce</Link></Dropdown.Item>
                     <Dropdown.Item >Se deconnecte</Dropdown.Item>
                   

@@ -6,36 +6,44 @@ import '../../Styles/App.css'
 import Header from '../Header';
 import supprimer from '../../assets/Supprimer.png'
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const Consult_Astuces = () => {
- const baseUrl = `http://192.168.137.1:7000/astuces/show?IdAstuce=${2}`;
+
   const [info,setInfo] = useState("");
   const [data,setData] = useState([]);
   const [comment, setComment] = useState("");
+  const [idPost,setidPost] = useState("");
+  const [userInfo,setUserInfo] = useState([]);
+   const {id} = useParams();
+   const baseUrl = `http://localhost:3000/astuces/show?IdAstuce=${id}`;
   useEffect(()=>{
+    setUserInfo(JSON.parse(localStorage.getItem('userInfo')));
+    console.log(userInfo)
       axios.get(baseUrl).then((reponse)=>{
         setInfo(reponse.data.users.astuce);
         setData(reponse.data.users.astuce.Commentaires)
 
-        console.log(reponse.data.users.astuce.Commentaires);
+     
       })
+
   },[]);
  
   const handle =  async (e) => {
     e.preventDefault( );
-    const formDatax = new FormData();
-     formDatax.append("creator","CamKill");
-
-formDatax.append( "IdAstuce", 2);
-formDatax.append("commentaire", comment);
-
+   
+const data = {
+  creator :userInfo.pseudo,
+   IdAstuce: id,
+   commentaire:comment
+}
   
-  const base  = `http://192.168.137.1:7000/commentaire/add/`; 
+  const base  = `http://localhost:3000/commentaires/add/`; 
    await axios.post (base,
-    formDatax,
+    data,
      { 
      headers: {
-       "Content-type": "multipart/form-data"
+      "Content-type": "application/x-www-form-urlencoded",
      }
    }
      ).then((reponse)=>{

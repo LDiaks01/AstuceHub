@@ -24,6 +24,9 @@ function  App(){
             <Route exac  path='/Register' element={<Register />}/>
             <Route exac  path='/Profil' element={<Profil />}/>
             <Route exac  path='/Publier' element={<PublierAstuce />}/>
+            <Route exac  path='/Consulte/:id' element={<Consult_Astuces />}/>
+            <Route exac  path='/UserAstuce' element={<Gestion_A_User />}/>
+            <Route exac  path='/AdminAstuce' element={<Gestion_A_Admin />}/>
        </Routes>
       </Router>
     </div>

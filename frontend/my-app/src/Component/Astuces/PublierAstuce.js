@@ -16,24 +16,27 @@ const DepotAstuce = () => {
     const handler = async (e) => {
         e.preventDefault();
     
-        
-        alert(contenu);
        const formData = new FormData();
        formData.append("titre",titre);
        formData.append("infosAstuce",infosAstuce);
        formData.append("contenu",contenu);
-      
-
+      formData.append('imageUrl',file)
+        const data = {
+            titre: titre,
+            infosAstuce:infosAstuce,
+            contenu:contenu,
+            imageUrl: file
+        }
        axios.put(baseUrl+`?username=${user.email}`,
-        formData,
+       data,
         {
           headers: {
-            "Content-type": "multipart/form-data",
+            "Content-type": "application/x-www-form-urlencoded",
             "Authorization" : `Bearer ${user.token}`
           }
         }
        ).then((reponse)=>{
-          console.log(reponse)
+         console.log(reponse);
        }).catch((e)=> console.log(e))
     }
     return (
