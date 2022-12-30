@@ -11,7 +11,8 @@ exports.addAstuce = function(req, res, next) {
         ...req.body,
         creator : req.decodedToken.username,
         isApproved : false, //par défaut aucune astuce n'est approuvé à sa création
-        imageUrl : "à rempllir après"
+        imageUrl : req.protocol + '://' + req.get('host') +
+        '/files/' + req.file.filename
     })
     .then(()=> {
         res.status(201).send("Astuce crée en attente d'approbation par un admin");
@@ -69,7 +70,7 @@ exports.getAstuce = function(req, res){
             attributes: ['IdCommentaire', 'creator', 'commentaire', 'createdAt', 'updatedAt'],
             include: [{
                 model: Users,
-                attributes: ['pseudo', 'imageUrl']
+                attributes: ['pseudo','email', 'imageUrl']
             }]
         }],
         attributes: ['IdAstuce', 'creator','titre', 'infosAstuce', 'contenu', 'imageUrl', 'createdAt', 'updatedAt'],

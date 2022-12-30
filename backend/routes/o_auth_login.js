@@ -31,7 +31,8 @@ router.get('/google/callback', function(req,res, next) {
             
             res.status(200).send({ 
                 isConnected : true,
-                token : token
+                token : token,
+                username : user.pseudo
             });
         }
     })(req, res, next);
@@ -64,7 +65,8 @@ router.get('/discord/callback', function(req,res, next) {
                 
                 res.status(200).send({ 
                     isConnected : true,
-                    token : token
+                    token : token,
+                    username : user.pseudo
                 });
             }
         }

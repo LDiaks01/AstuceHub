@@ -31,7 +31,8 @@ router.post('/', function(req,res, next) {
             //retourner le token de l'utilisateur qui s'est authentifié
             res.status(200).send({ 
                 isConnected : true,
-                token : token
+                token : token,
+                username : user.pseudo
             });
         }
     })(req, res, next);

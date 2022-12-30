@@ -8,5 +8,6 @@ const users = require('../controllers/users');
 router.post('/bann', token_auth, users.bannUser);
 router.post('/debann', token_auth, users.deBannUser);
 router.post('/makeadmin', token_auth, users.makeAdmin);
+router.get('/all', token_auth, users.getAllUsers);
 
 module.exports = router;
