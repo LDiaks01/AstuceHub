@@ -21,8 +21,9 @@ exports.findUser = function(req, res, next) {
                  pseudo : user.pseudo,
                  nom : user.nom,
                  prenom : user.prenom,
-                 imageUrl : user.imageUrl 
-                })
+                 imageUrl : user.imageUrl,
+                 isAdmin : user.isAdmin
+                }) 
             })
             .catch(err => {
                 console.error(err);

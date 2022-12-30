@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "run"
+    "test": "nodemon run"
   },
   "author": "Groupe 7 Members",
   "license": "ISC",
