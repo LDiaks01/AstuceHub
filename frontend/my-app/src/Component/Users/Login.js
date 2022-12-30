@@ -29,12 +29,14 @@ const handleSubmit = (values) => {
             values).then((reponse)=>{
                 if(reponse.data.isConnected) {
                       reponse.data["email"] = values.email;
-                    
+                       console.log(reponse.data.token)
                      localStorage.setItem('user', JSON.stringify(reponse.data));
                     
                 };
             }).catch((e)=>console.log(e))
+     
 };
+
 
 function Register() {
   return (
