@@ -4,7 +4,7 @@ const keys = require('../keys/keys');
 const sequelize = new Sequelize(keys.databaseName, keys.username, keys.password, {
     host: keys.host,
     dialect:'mysql',
-    logging: false
+    logging: true
   });
 
 const Users = sequelize.define('Users', {

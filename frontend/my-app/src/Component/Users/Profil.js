@@ -4,30 +4,14 @@ import Header from "../Header";
 import {faPen} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {Link} from "react-router-dom";
-import axios from 'axios';
-const baseUrl = "http://127.0.0.1:7000/profil/show";
 
 function Profil(){
+
     const [user, setUser] = useState({});
 
-    const fetchUserData = async () => {
-        try {
-            
-            const token = localStorage.getItem('token');
-            const response = await axios.get(baseUrl, {
-            headers :{
-                Authorization : `Bearer ${token}`
-            },
-          }); 
-          setUser(response.data);
-        } catch (error) {
-          console.error(error);
-        }
-      };
-
-      useEffect(() => {
-        fetchUserData();
-      }, []);
+   useEffect(()=>{
+    setUser(JSON.parse(localStorage.getItem('userInfo')));
+   }, [])
 
       const {nom, prenom, pseudo, email, imageUrl} = user;
 

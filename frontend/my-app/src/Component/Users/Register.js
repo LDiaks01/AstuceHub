@@ -10,8 +10,8 @@ const Register = () => {
     const [firstName, setFirstName] = useState("");
     const [pseudo, setPseudo] = useState("");
     const [email, setEmail] = useState("");
-    const [password, setConfirmPassword] = useState("");
-    const [confirmPassword, setPassword] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [file, setFiles] = React.useState([]);
     const [error, setError] = useState(null);
 
@@ -147,8 +147,12 @@ const Register = () => {
                                 />
                             </div>
                             <div className="form-group d-grid mb-3">
-                            <input type="submit" value={"S'inscrire"} className="btn btn-primary" />
-                             
+                             <button
+                                type="submit"
+                                className="btn btn-primary"
+                            >
+                                <Link Link to="/" className='text-white'>S'inscrire</Link>
+                            </button>
                             </div>
                             <div>
                                 <p className="text-right">

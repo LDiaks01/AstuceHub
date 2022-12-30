@@ -31,12 +31,14 @@ const handleSubmit = (values) => {
             values).then((reponse)=>{
                 if(reponse.data.isConnected) {
                       reponse.data["email"] = values.email;
-                    
+                       console.log(reponse.data.token)
                      localStorage.setItem('user', JSON.stringify(reponse.data));
                     
                 };
             }).catch((e)=>console.log(e))
+     
 };
+
 
 function Login() {
   return (
@@ -83,21 +85,21 @@ function Login() {
                             />
                         </div>
                         <div className='d-grid mb-3'>
-                        <button
+                            <button
                                 type="submit"
                                 className="btn btn-primary"
                             >
-                                Connexion
+                                <Link Link to="/" className='text-white'>Connexion</Link>
                             </button>
-                            </div>
-                            <div className='d-grid mb-3'>
-                                <button 
-                                    // onClick={handleGoogleLogin}
-                                    className="btn btn-danger"
-                                    >
-                                        Connexion avec Google
-                                </button>
-                            </div>
+                        </div>
+                        <div className='d-grid mb-3'>
+                            <button 
+                                // onClick={handleGoogleLogin}
+                                className="btn btn-danger"
+                                >
+                                    Connexion avec Google
+                            </button>
+                        </div>
                         <div>
                             <p className="text-right">
                             Vous n'avez de compte ? <Link to="/Register"><a href="#">Inscrivez-vous</a></Link>

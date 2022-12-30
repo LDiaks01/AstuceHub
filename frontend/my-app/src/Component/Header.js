@@ -8,27 +8,24 @@ const baseUrl = "http://localhost:7000/profil/show";
 
 const Header =  () => {
     const [user,setUser] = useState([]);
+    const [userInfo, setUserInfo] = useState([]);
+    
     useEffect( ()=>{
-       
-       setUser(JSON.parse(localStorage.getItem('user')))
-       
+       setUser((localStorage.getItem('user')));
+         
         axios.get(baseUrl+`?username=${user.email}`,
-            {
-              headers:{'Authorization': `Bearer  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hbWFkb3VjaXJlY2FtYXJhQGdtYWlsLmNvbSIsImlhdCI6MTY3MjM1NzEzNywiZXhwIjoxNjcyNDQzNTM3fQ.oXMV1jbfjy0QqQaqxfemLxEao0-wBUdPl2uHUh2TiZY`,
-              'Accept' : 'application/json',
-              'Content-Type': 'application/json'
-            }
-            }
-          ).then((response)=>{
-              console.log(response);
+         
+                  { headers: {"Authorization" : `Bearer ${user.token}`} }
+           ).then((response)=>{    
+            localStorage.setItem('userInfo', JSON.stringify(response.data));
           }).catch((error)=>{
               console.error(error) 
 
-          })
-        
-       
-    },[]);
-    
+          }) 
+          setUserInfo(JSON.parse(localStorage.getItem('userInfo')));
+          
+    },[]);   
+  
     return(
     <header>
         <Navbar bg='blue' expand="lg" className='shadow mb-5 bg-white '>
@@ -57,7 +54,7 @@ const Header =  () => {
                     title={
                         <div className="avatar">
                             <img className="avatarImg" 
-                                src="https://www.generation-game.com/wp-content/uploads/2020/03/CoD-Warzone-trucs-astuces-pour-gagner-950x509.jpg" 
+                                src={userInfo.imageUrl} 
                                 alt="user pic"
                             />
     
@@ -67,9 +64,10 @@ const Header =  () => {
                     id="basic-nav-dropdown">
     
                     
-                    <Dropdown.Item href="#/action-1">Profil</Dropdown.Item>
-                    <Dropdown.Item href="#/action-1">Mes Astuces</Dropdown.Item>
-                    <Dropdown.Item href="#/action-1">Se deconnecte</Dropdown.Item>
+                    <Dropdown.Item ><Link to="/Profil"> Profil </Link></Dropdown.Item>
+                    <Dropdown.Item >Mes Astuces</Dropdown.Item>
+                    <Dropdown.Item ><Link to="/Publier"> Publier une Astuce</Link></Dropdown.Item>
+                    <Dropdown.Item >Se deconnecte</Dropdown.Item>
                   
                 </NavDropdown>
             </Nav>

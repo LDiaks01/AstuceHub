@@ -11,7 +11,9 @@ const EditUser = () => {
     const [pseudo, setPseudo] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState("");
     const [file, setFiles] = React.useState('');
+    const [error, setError] = useState(null);
 
     const fetchUserData = async () =>{
         const reponse = await axios.get(baseUrl)
@@ -34,6 +36,22 @@ const EditUser = () => {
 
     const handler = (e) => {
         e.preventDefault();
+
+        // const passwordSize = () => {
+        //     if (password.length < 8) {
+        //       setError('Le mot de passe doit comporté au moins 8 caractères');
+        //       return false;
+        //     }
+        //     return true;
+        //   }
+    
+        // const validateForm = () => {
+        //     if (password !== confirmPassword) {
+        //       setError('Les mots de passe ne correspondent pas');
+        //       return false;
+        //     }
+        //     return true;
+        //   }
        
     }
       
@@ -46,7 +64,7 @@ const EditUser = () => {
                         <h1 className="text-center">Modification du profil</h1>
                         <form encType='multipart/form-data'  onSubmit={handler}>
                             <div className="form-group mb-3">
-                                <label htmlFor="lastName">Nom</label>
+                                <label >Nom</label>
                                 <input
                                     type="name"
                                     name="lastName"
@@ -56,7 +74,7 @@ const EditUser = () => {
                                 />
                             </div>
                             <div className="form-group mb-3">
-                                <label htmlFor="firstName">Prénom</label>
+                                <label >Prénom</label>
                                 <input
                                     type="name"
                                     id="firstName"
@@ -67,7 +85,7 @@ const EditUser = () => {
                                 />
                             </div>
                             <div className="form-group mb-3">
-                                <label htmlFor="firstName">Pseudo</label>
+                                <label >Pseudo</label>
                                 <input
                                     type="text"
                                     id="pseudo"
@@ -78,7 +96,7 @@ const EditUser = () => {
                                 />
                             </div>
                             <div className="form-group mb-3">
-                                <label htmlFor="email">Email</label>
+                                <label >Email</label>
                                 <input
                                     type="email"
                                     id="email"
@@ -89,7 +107,7 @@ const EditUser = () => {
                                 />
                             </div>
                             <div className="form-group mb-3">
-                                <label htmlFor="password">Mot de passe</label>
+                                <label >Mot de passe</label>
                                 <input
                                     type="password"
                                     id="password"
@@ -100,7 +118,7 @@ const EditUser = () => {
                                 />
                             </div>
                             <div className="form-group mb-3">
-                                <label htmlFor="confirmPassword">
+                                <label >
                                     Confirmer le mot de passe
                                 </label>
                                 <input
@@ -108,10 +126,11 @@ const EditUser = () => {
                                     id="confirmPassword"
                                     name="confirmPassword"
                                     className="form-control"
+                                    onChange={(e) => setConfirmPassword(e.target.value)}
                                 />
                             </div>
                             <div className="form-group mb-3">
-                                <label htmlFor="file">Photo de profil</label>
+                                <label >Photo de profil</label>
                                 <input
                                     type="file"
                                     id="photo"
