@@ -10,7 +10,8 @@ exports.addAstuce = function(req, res, next) {
         ...req.body,
         creator : req.decodedToken.username,
         isApproved : false, //par défaut aucune astuce n'est approuvé à sa création
-        imageUrl : "à rempllir après"
+        imageUrl : req.protocol + '://' + req.get('host') +
+        '/files/' + req.file.filename
     })
     .then(()=> {
         res.status(201).send("Astuce crée en attente d'approbation par un admin");

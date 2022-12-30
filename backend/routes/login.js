@@ -24,7 +24,7 @@ router.post('/', function(req,res, next) {
         else if(user)
         {
             let token = jwt.sign(
-                {'username' : user.pseudo},
+                {'username' : user.email},
                 'GROUPE_7_JWT_KEY',
                 { expiresIn: '24h'}
             );
