@@ -5,8 +5,11 @@ import {faPen} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {Link} from "react-router-dom";
 
+// Déclaration du composant Profil qui affiche le profil de l'utilisateur
+
 function Profil(){
 
+     // Définition de l'état qui stockera les informations des utilisateurs une fois récupérée
     const [user, setUser] = useState({});
 
    useEffect(()=>{
@@ -34,7 +37,7 @@ function Profil(){
                                         Modifier le profil
                                     </h6>
                                     <Link to="/EditUser"><button className="btn btn-outline-primary btn-xs d-inline float-start w-10 mb-3"><FontAwesomeIcon className='w-10' icon={faPen}/></button></Link>
-                                    <Link to="/DepotAstuce"><button className="btn btn-primary btn-xs d-inline float-start ">Publier une astuce</button></Link>
+                                    <Link to="/Publier"><button className="btn btn-primary btn-xs d-inline float-start ">Publier une astuce</button></Link>
                                 </div>
                             </div>
                         </div>

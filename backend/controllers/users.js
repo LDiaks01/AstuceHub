@@ -1,5 +1,14 @@
 const Users = require('../models/users');
 
+exports.getAllUsers = function (req, res) {
+    Users.findAll()
+    .then(users => {
+        res.status(201).send({
+            users : users
+        })
+    })
+    .catch(err => res.status(400).send("Impossible de récuperer les users"));
+}
 exports.bannUser = async function(req, res){
     Users.findOne({ where : { pseudo : req.decodedToken.username}})
     .then(user =>{

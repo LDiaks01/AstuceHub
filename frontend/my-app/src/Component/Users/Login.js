@@ -5,9 +5,10 @@ import {Formik, Field, Form, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import data from '../../model/data';
 
-const baseUrl = "http://127.0.0.1:7000/login/"
+//endpoint de l'api pour le login
+const baseUrl = "http://127.0.0.1:3000/login"
+
 //Schéma de validation avec Yup
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -39,6 +40,7 @@ const handleSubmit = (values) => {
      
 };
 
+// Déclaration du composant Login qui affiche un formulaire pour la connexion d'un utilisateur
 
 function Login() {
   return (
@@ -89,7 +91,7 @@ function Login() {
                                 type="submit"
                                 className="btn btn-primary"
                             >
-                                <Link Link to="/" className='text-white'>Connexion</Link>
+                               Connexion
                             </button>
                         </div>
                         <div className='d-grid mb-3'>

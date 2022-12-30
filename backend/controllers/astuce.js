@@ -6,19 +6,21 @@ const Users = require('../models/users');
 //ajout d'astuces qui par défaut ne sont pas approuvées
 exports.addAstuce = function(req, res, next) {
     //On cree l'astuce en bd en recuperant les elements depuis le body
+   
     Astuces.create({
         ...req.body,
         creator : req.decodedToken.username,
         isApproved : false, //par défaut aucune astuce n'est approuvé à sa création
-        imageUrl : "à rempllir après"
+        imageUrl : req.protocol + '://' + req.get('host') +
+        '/files/' + req.file.filename
     })
     .then(()=> {
         res.status(201).send("Astuce crée en attente d'approbation par un admin");
     })
-    .catch(err=> {
+    .catch(err=> { 
         res.status(400).send("Erreur : verifiez que vous avez fourni tous les champs");
         console.log(err);
-    })
+    })  
 }
 
 // recuperer toutes les astuces approuvées
@@ -68,7 +70,7 @@ exports.getAstuce = function(req, res){
             attributes: ['IdCommentaire', 'creator', 'commentaire', 'createdAt', 'updatedAt'],
             include: [{
                 model: Users,
-                attributes: ['pseudo', 'imageUrl']
+                attributes: ['pseudo','email', 'imageUrl']
             }]
         }],
         attributes: ['IdAstuce', 'creator','titre', 'infosAstuce', 'contenu', 'imageUrl', 'createdAt', 'updatedAt'],
@@ -117,12 +119,12 @@ exports.findAstucesByUser = function(req, res){
 
 //supprimer une astuce d'un utilisateur
 exports.deleteAstuce = async function(req, res){
-    Users.findOne({ where : { pseudo : req.decodedToken.username}})
+    Users.findOne({ where : { email : req.decodedToken.username}})
     .then(user =>{
-        if(req.body.creator == req.decodedToken.username || user.isAdmin)
+        if(req.query.username == req.decodedToken.username || user.isAdmin)
         {
             Astuces.destroy({
-                where: { IdAstuce: req.body.IdAstuce }
+                where: { IdAstuce: req.query.IdAstuce }
             })
             .then(() => {
                 res.status(200).send("Astuce supprimée");

@@ -2,9 +2,16 @@ import React, { useState, useEffect } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from '../Header';
 import axios from 'axios';
-const baseUrl = "http://127.0.0.1:7000/profil/modify";
+
+//endpoint de l'api pour modifier un utilisateur
+const baseUrl = "http://127.0.0.1:3000/profil/modify";
+
+// Déclaration du composant EditUser qui affiche un formulaire permettant de modifier un utilisateur
 
 const EditUser = () => {
+
+    // Définition des états qui stockeront les valeurs saisies dans le formulaire
+
     const [user, setUser] = useState({});
     const [lastName, setLastName] = useState('');
     const [firstName, setFirstName] = useState('');
@@ -15,6 +22,7 @@ const EditUser = () => {
     const [file, setFiles] = React.useState('');
     const [error, setError] = useState(null);
 
+    //Récupération des données de l'utisateur à partir de l'api
     const fetchUserData = async () =>{
         const reponse = await axios.get(baseUrl)
         try {
@@ -34,24 +42,9 @@ const EditUser = () => {
         fetchUserData();
     }, []);
 
+     // Fonction qui sera appelée lors de la soumission du formulaire
     const handler = (e) => {
         e.preventDefault();
-
-        // const passwordSize = () => {
-        //     if (password.length < 8) {
-        //       setError('Le mot de passe doit comporté au moins 8 caractères');
-        //       return false;
-        //     }
-        //     return true;
-        //   }
-    
-        // const validateForm = () => {
-        //     if (password !== confirmPassword) {
-        //       setError('Les mots de passe ne correspondent pas');
-        //       return false;
-        //     }
-        //     return true;
-        //   }
        
     }
       

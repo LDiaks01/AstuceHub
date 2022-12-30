@@ -5,7 +5,8 @@ const Users = require('../models/users');
 exports.addComment = async (req, res) => {
     
 
-    
+     console.log(req.body);
+
     Commentaires.create({
         creator: req.body.creator,
         IdAstuce: req.body.IdAstuce,

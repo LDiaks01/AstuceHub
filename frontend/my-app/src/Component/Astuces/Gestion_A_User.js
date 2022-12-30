@@ -1,9 +1,11 @@
 import { Button } from 'react-bootstrap';
-import data from '../../model/data'
 import '../../Styles/App.css'
 import Header from '../Header';
 import Item from '../Item'
 import ItemAstuce from '../ItemAstuce';
+
+/*Déclaration du composant qui affiche toutes les astuces d'un utilisateur */
+
 const Gestion_A_User = () => {
   return (
     <div>

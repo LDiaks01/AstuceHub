@@ -1,9 +1,13 @@
 import { Button } from 'react-bootstrap';
 import datas from '../model/data'
 import '../Styles/App.css'
-import Item from './Item';
+import Item from '../Component/Item';
 import axios  from 'axios';
 import { useEffect, useState } from 'react';
+import eye from '../assets/eye.png'
+import supprimer from '../assets/Supprimer.png'
+import { Link} from "react-router-dom";
+import valide from '../assets/valide.png'
 
 
 function ItemAstuce({nombre, user, texte}){
@@ -39,7 +43,15 @@ function ItemAstuce({nombre, user, texte}){
                         <tbody>
                             
                         {  data.map((game,index)=>(
-                                            <Item  titre={game.titre} IdAstuce={game.IdAstuce}  desc={game.infosAstuce} user={user} etat={game.isApproved} />
+                                          <tr>
+                                          <td>{game.titre}</td>
+                                          <td>{game.infosAstuce.substring(0, 50)}...</td>
+                                          {user?<td>{game.isApproved? "valide ":"En attend ..."}</td> : <td>{game.isApproved? "valide ":"En attend ..."}</td>  }  {/* cette partie ne s'affiche que s'il c'est l'utilisateur qui veux voir la liste de ses Asctuce */}
+                                          <td> <a  title="supprimer"><Link to={`/Consulte/${game.IdAstuce}`}><img src={eye} alt='Voir plus'  className='eyes'/></Link> </a>
+                                           {/* cette partie ne s'affiche que s'il c'est l'utilisateur qui veux voir la liste de ses Asctuce */}
+                                       
+                                          </td>
+                                      </tr>
                                         ))
                                     }
                         </tbody>
