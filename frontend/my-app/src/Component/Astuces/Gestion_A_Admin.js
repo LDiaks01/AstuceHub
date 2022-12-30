@@ -8,11 +8,11 @@ const Gestion_A_User = () => {
   return (
     <div>
      <Header />
-<div className='Gestion shadow   bg-white '>
-      
-      <ItemAstuce  user={false} texte={"L'ensemble de toutes les astuces "} />
+      <div className='Gestion shadow   bg-white '>
+            
+            <ItemAstuce  user={false} texte={"L'ensemble de toutes les astuces "} />
 
-</div>
+      </div>
     </div>
     
   );

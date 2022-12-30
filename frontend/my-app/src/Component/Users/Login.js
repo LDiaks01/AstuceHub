@@ -3,8 +3,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from '../Header';
 import {Formik, Field, Form, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-const baseUrl = "http://192.168.137.1:7000/login/"
+const baseUrl = "http://127.0.0.1:7000/login/"
+
+
 //Schéma de validation avec Yup
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -45,6 +48,7 @@ function Register() {
                 validationSchema={validationSchema}
                 onSubmit={(values) =>handleSubmit(values)}
             >
+              
                 {({ resetForm }) => (
                     <Form>
                         <div className="form-group mb-3">
@@ -75,17 +79,25 @@ function Register() {
                                 className="text-danger"
                             />
                         </div>
-                        <div className='d-grid'>
-                            <button
+                        <div className='d-grid mb-3'>
+                        <button
                                 type="submit"
                                 className="btn btn-primary"
                             >
-                                S'inscrire
+                                Connexion
                             </button>
+                            </div>
+                            <div className='d-grid mb-3'>
+                                <button 
+                                    // onClick={handleGoogleLogin}
+                                    className="btn btn-danger"
+                                    >
+                                        Connexion avec Google
+                                </button>
                             </div>
                         <div>
                             <p className="text-right">
-                            Vous n'avez de compte ? <a href="#">Inscrivez-vous</a>
+                            Vous n'avez de compte ? <Link to="/Register"><a href="#">Inscrivez-vous</a></Link>
                             </p>
                         </div>
                     </Form>

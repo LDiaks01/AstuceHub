@@ -1,215 +1,161 @@
 import React, { useState, useEffect } from 'react';
-import {Formik, Field, Form, ErrorMessage} from 'formik';
-import * as Yup from 'yup';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from '../Header';
+import axios from 'axios';
+const baseUrl = "http://127.0.0.1:7000/profil/modify";
 
-//Schéma de validation avec Yup
-const validationSchema = Yup.object().shape({
-  nom: Yup.string()
-      .min(5, "Trop petit")
-      .max(20, "Trop long!")
-      .required("Ce champ est obligatoire"),
-  prenom: Yup.string()
-      .min(2, "trop petit")
-      .max(20, "trop long!")
-      .required("Ce champ est obligatoire"),
-  Pseudo: Yup.string()
-      .min(2, "trop petit")
-      .max(10, "trop long!")
-      .required("Ce champ est obligatoire"),
-  email: Yup.string()
-      .email("email invalide")
-      .required("L'email est obligatoire"),
-  password: Yup.string()
-      .required("Le mot de passe est obligatoire")
-      .min(8, "Le mot de passe doit être plus grand que 8 caractères")
-      .max(20, "Le mot de passe doit être plus petit que 50 caractères"),
-  confirmPassword: Yup.string()
-      .required("La Confirmation de mot de passe est obligatoire")
-      .oneOf(
-          [Yup.ref("password"), null],
-          "Le mot de passe de confirmation ne correspond pas"
-      ),
-  photo: Yup.string()
-      .email("Fichier invalide")
-      .required("La photo est obligatoire"),
-});
+const EditUser = () => {
+    const [user, setUser] = useState({});
+    const [lastName, setLastName] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [pseudo, setPseudo] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [file, setFiles] = React.useState('');
 
-//Création de la variable initialValues
-const initialValues = {
-    nom: "",
-    prenom: "",
-    pseudo: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    photo: "",
-  };
+    const fetchUserData = async () =>{
+        const reponse = await axios.get(baseUrl)
+        try {
+            setUser(reponse.data);
+            setFirstName(reponse.data.firstName);
+            setLastName(reponse.data.lastName);
+            setPseudo(reponse.data.pseudo);
+            setEmail(reponse.data.email);
+            setPassword(reponse.data.password);
+            setFiles(reponse.data.file);
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
-//Traitement de la soumission du formulaire
-const handleSubmit = (values) => {
-  console.log(values)
-};
+    useEffect(() =>{
+        fetchUserData();
+    }, []);
 
-
-
-const EditUser = (props) => {
-    const [user, setUser] = useState(props.currentUser)
+    const handler = (e) => {
+        e.preventDefault();
+        const updatedUser = {
+            firstName,
+            lastName,
+            pseudo,
+            email,
+            password,
+            file,
+          };
+       
+    const formData  = new FormData();
+    formData.append("file",file);
+    formData.append( "firstName",firstName);
+    formData.append( "lastName",lastName);
+    formData.append( "pseudo",pseudo);
+    formData.append("email",email);
+    formData.append("password",password);
     
-    useEffect(
-        () => {
-          setUser(props.currentUser)
-        },
-        [ props ]
-      )
-
-    const handleInputChange = (event) => {
-        const { name, value } = event.target
-    
-        setUser({ ...user, [name]: value })
+    axios.put(baseUrl,
+        formData,
+        {
+          headers: {
+            "Content-type": "multipart/form-data"
+          }
+        }
+       ).then((reponse)=>{
+          console.log(reponse)
+       }).catch((e)=> console.log(e))
+       
     }
       
   return (
     <div>
         <Header />
         <div className="container">
-        <div className="row  bg-white shadow mb-5">
-            <div className="col-md-6 offset-md-3 pt-2 mb-5">
-            <h1 className="text-center">Modification du profil</h1>
-            <Formik
-                 initialValues={initialValues}
-                 validationSchema={validationSchema}
-                 onSubmit={(values) =>handleSubmit(values)}
-            >
-                {({ resetForm }) => (
-                    <Form>
-                        <div className="form-group mb-3">
-                            <label htmlFor="nom">Nom</label>
-                            <Field
-                                type="text"
-                                name="nom"
-                                //   value={user.nom}
-                                className="form-control"
-                                onChange={handleInputChange}
-                            />
-                            <ErrorMessage
-                                name="nom"
-                                component="small"
-                                className="text-danger"
-                            />
-                        </div>
-                        <div className="form-group mb-3">
-                            <label htmlFor="prenoom">Prénom</label>
-                            <Field
-                                type="text"
-                                name="prenom"
-                                //   value={user.prenom}
-                                className="form-control"
-                                onChange={handleInputChange}
-                            />
-                            <ErrorMessage
-                                name="prenom"
-                                component="small"
-                                className="text-danger"
-                            />
-                        </div>
-                        <div className="form-group mb-3">
-                            <label htmlFor="pseudo">Pseudo</label>
-                            <Field
-                                type="text"
-                                name="pseudo"
-                                //   value={user.pseudo}
-                                className="form-control"
-                                onChange={handleInputChange}
-                            />
-                            <ErrorMessage
-                                name="pseudo"
-                                component="small"
-                                className="text-danger"
-                            />
-                        </div>
-                        <div className="form-group mb-3">
-                            <label htmlFor="email">Email</label>
-                            <Field
-                                type="email"
-                                name="email"
-                                //   value={user.email}
-                                className="form-control"
-                                onChange={handleInputChange}
-                            />
-                            <ErrorMessage
-                                name="email"
-                                component="small"
-                                className="text-danger"
-                            />
-                        </div>
-                        <div className="form-group mb-3">
-                            <label htmlFor="password">Mot de passe</label>
-                            <Field
-                                type="password"
-                                name="password"
-                                //   value={user.password}
-                                className="form-control"
-                                onChange={handleInputChange}
-                            />
-                            <ErrorMessage
-                                name="password"
-                                component="small"
-                                className="text-danger"
-                            />
-                        </div>
-                        <div className="form-group mb-3">
-                            <label htmlFor="confirmPassword">Confirmer le mot de passe</label>
-                            <Field
-                                type="password"
-                                name="confirmPassword"
-                                //   value={user.confirmPassword}
-                                className="form-control"
-                                onChange={handleInputChange}
-                            />
-                            <ErrorMessage
-                                name="confirmPassword"
-                                component="small"
-                                className="text-danger"
-                            />
-                        </div>
-                        <div className="form-group mb-3">
-                            <label htmlFor="confirmPassword">Photo de profil</label>
-                            <Field
-                                type="file"
-                                name="photo"
-                                //   value={user.photo}
-                                className="form-control"t
-                                onChange={handleInputChange}
-                            />
-                            <ErrorMessage
-                                name="photo"
-                                component="small"
-                                className="text-danger"
-                            />
-                        </div>
-                        <div className="form-group d-flex justify-content-end gap-3">
-                            <button
-                                type="button"
-                                onClick={resetForm}
-                                className="btn btn-secondary"
-                            >
-                                Annuler
-                            </button>
-                            <button
-                                type="submit"
-                                className="btn btn-primary"
-                            >
-                                Enregistré
-                            </button>
-                        </div>
-                    </Form>
-                )}
-            </Formik>
+                <div className="row  bg-white shadow mb-5">
+                    <div className="col-md-6 offset-md-3 pt-2 mb-5">
+                        <h1 className="text-center">Modification du profil</h1>
+                        <form encType='multipart/form-data'  onSubmit={handler}>
+                            <div className="form-group mb-3">
+                                <label htmlFor="lastName">Nom</label>
+                                <input
+                                    type="name"
+                                    name="lastName"
+                                    className="form-control"
+                                    value={lastName}
+                                    onChange={(e) => setLastName(e.target.value)}
+                                />
+                            </div>
+                            <div className="form-group mb-3">
+                                <label htmlFor="firstName">Prénom</label>
+                                <input
+                                    type="name"
+                                    id="firstName"
+                                    name="firstName"
+                                    className="form-control"
+                                    value={firstName}
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                />
+                            </div>
+                            <div className="form-group mb-3">
+                                <label htmlFor="firstName">Pseudo</label>
+                                <input
+                                    type="text"
+                                    id="pseudo"
+                                    name="pseudo"
+                                    className="form-control"
+                                    value={pseudo}
+                                    onChange={(e) => setPseudo(e.target.value)}
+                                />
+                            </div>
+                            <div className="form-group mb-3">
+                                <label htmlFor="email">Email</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    className="form-control"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
+                            <div className="form-group mb-3">
+                                <label htmlFor="password">Mot de passe</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    name="password"
+                                    className="form-control"
+                                    value={pseudo}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                />
+                            </div>
+                            <div className="form-group mb-3">
+                                <label htmlFor="confirmPassword">
+                                    Confirmer le mot de passe
+                                </label>
+                                <input
+                                    type="password"
+                                    id="confirmPassword"
+                                    name="confirmPassword"
+                                    className="form-control"
+                                />
+                            </div>
+                            <div className="form-group mb-3">
+                                <label htmlFor="file">Photo de profil</label>
+                                <input
+                                    type="file"
+                                    id="photo"
+                                    name="file"
+                                    className="form-control"
+                                    value={file}
+                                    onChange={(e) => setFiles(e.target.files[0])}
+                                />
+                            </div>
+                            <div className="form-group d-flex justify-content-end">
+                                <input type="submit" value={"Enregistré"} className="btn btn-primary" />
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
     </div>
   )
 }

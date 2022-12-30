@@ -27,7 +27,6 @@ const ItemUsers = props =>(
                     <td>{user.pseudo}</td>
                     <td>{user.email}</td>
                     <td>
-                        <button className="btn btn-warning btn-xs d-inline float-start w-10"><FontAwesomeIcon className='w-10' icon={faEye}/></button> 
                         <button className="btn btn-primary btn-xs d-inline float-start w-10"><FontAwesomeIcon className='w-10' icon={faPen}/></button>
                         <button className="btn btn-danger btn-xs d-inline float-start w-10"><FontAwesomeIcon className='w-10' icon={faTrash}/></button>
                     </td>

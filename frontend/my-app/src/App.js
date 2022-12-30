@@ -9,6 +9,7 @@ import Gestion_A_Admin from './Component/Astuces/Gestion_A_Admin';
 import Consult_Astuces from './Component/Astuces/Consult_Astuces';
 import EditUser from './Component/Users/EditUser';
 import ListUsers from './Component/Users/ListUsers';
+import DepotAstuce from './Component/Astuces/DepotAstuce';
 import {BrowserRouter as Router,Switch, Routes,Route} from "react-router-dom"
 
 function  App(){
@@ -18,9 +19,10 @@ function  App(){
 
       <Router>
        <Routes>
-            <Route exac  path='/' element={<Consult_Astuces/>}/>
+            <Route exac  path='/' element={<Profil/>}/>
             <Route exac  path='/Login' element={<Login />}/>
             <Route exac  path='/Register' element={<Register />}/>
+            <Route exac  path='/EditUser' element={<EditUser />}/>
        </Routes>
       </Router>
     </div>
