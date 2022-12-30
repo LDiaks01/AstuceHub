@@ -19,10 +19,11 @@ function  App(){
 
       <Router>
        <Routes>
-            <Route exac  path='/' element={<Consult_Astuces/>}/>
+            <Route exac  path='/' element={<Login/>}/>
             <Route exac  path='/Login' element={<Login />}/>
             <Route exac  path='/Register' element={<Register />}/>
             <Route exac  path='/EditUser' element={<EditUser />}/>
+            <Route exac  path='/Profil' element={<Profil />}/>
        </Routes>
       </Router>
     </div>

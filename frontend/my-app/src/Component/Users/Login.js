@@ -38,7 +38,7 @@ const handleSubmit = (values) => {
             }).catch((e)=>console.log(e))
 };
 
-function Register() {
+function Login() {
   return (
     <div>
         <Header />
@@ -112,4 +112,4 @@ function Register() {
     </div>
   )
 }
-export default Register;
+export default Login;

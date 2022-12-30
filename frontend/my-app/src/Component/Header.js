@@ -4,7 +4,7 @@ import logo from '../assets/logo.png';
 import {json, Link} from "react-router-dom";
 import { useEffect, useState } from 'react';
 import axios from "axios";
-const baseUrl = "http://localhost:3000/profil/show";
+const baseUrl = "http://localhost:7000/profil/show";
 
 const Header =  () => {
     const [user,setUser] = useState([]);
@@ -28,6 +28,7 @@ const Header =  () => {
         
        
     },[]);
+    
     return(
     <header>
         <Navbar bg='blue' expand="lg" className='shadow mb-5 bg-white '>
@@ -79,16 +80,6 @@ const Header =  () => {
         
         </Navbar>
        
-
-
-
-
-
- 
-
-
-
-
     </header>
    
 );}

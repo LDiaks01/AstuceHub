@@ -5,9 +5,6 @@ import axios from 'axios';
 import {Link} from "react-router-dom";
 const baseUrl = "http://127.0.0.1:7000/register/";
 
-
-
-
 const Register = () => {
     const [lastName, setLastName] = useState("");
     const [firstName, setFirstName] = useState("");

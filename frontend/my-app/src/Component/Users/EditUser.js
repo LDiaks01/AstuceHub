@@ -34,33 +34,6 @@ const EditUser = () => {
 
     const handler = (e) => {
         e.preventDefault();
-        const updatedUser = {
-            firstName,
-            lastName,
-            pseudo,
-            email,
-            password,
-            file,
-          };
-       
-    const formData  = new FormData();
-    formData.append("file",file);
-    formData.append( "firstName",firstName);
-    formData.append( "lastName",lastName);
-    formData.append( "pseudo",pseudo);
-    formData.append("email",email);
-    formData.append("password",password);
-    
-    axios.put(baseUrl,
-        formData,
-        {
-          headers: {
-            "Content-type": "multipart/form-data"
-          }
-        }
-       ).then((reponse)=>{
-          console.log(reponse)
-       }).catch((e)=> console.log(e))
        
     }
       
