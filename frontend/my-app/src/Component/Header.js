@@ -39,7 +39,7 @@ const Header =  () => {
             </Row>
             <Row>
             {
-                user.isConnected &&
+                !user.isConnected &&
             
                 <Nav className='me-auto'>
                     <Nav.Link   className='d-inline-block align-top fw-bold text-primary' ><Link to="/Login">Connexion</Link> </Nav.Link>
@@ -47,7 +47,7 @@ const Header =  () => {
                 </Nav>
                 }
             {
-                !user.isConnected &&
+                user.isConnected &&
                 <Nav pullRight>
                 <NavDropdown eventKey={1} 
                     title={
