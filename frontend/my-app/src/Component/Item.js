@@ -6,6 +6,7 @@ import {json, Link} from "react-router-dom";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 const baseUrl = "http://localhost:3000/astuces/delete/";
+
 const Item = ({titre, desc, user, etat, IdAstuce}) => {
   const [userd,setUser] = useState("");
     let description = desc;

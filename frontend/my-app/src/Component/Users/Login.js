@@ -3,9 +3,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Header from '../Header';
 import {Formik, Field, Form, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import data from '../../model/data';
-const baseUrl = "http://localhost:3000/login/"
+
+//endpoint de l'api pour le login
+const baseUrl = "http://127.0.0.1:3000/login"
+
 //Schéma de validation avec Yup
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -37,8 +40,9 @@ const handleSubmit = (values) => {
      
 };
 
+// Déclaration du composant Login qui affiche un formulaire pour la connexion d'un utilisateur
 
-function Register() {
+function Login() {
   return (
     <div>
         <Header />
@@ -51,6 +55,7 @@ function Register() {
                 validationSchema={validationSchema}
                 onSubmit={(values) =>handleSubmit(values)}
             >
+              
                 {({ resetForm }) => (
                     <Form>
                         <div className="form-group mb-3">
@@ -81,17 +86,25 @@ function Register() {
                                 className="text-danger"
                             />
                         </div>
-                        <div className='d-grid'>
+                        <div className='d-grid mb-3'>
                             <button
                                 type="submit"
                                 className="btn btn-primary"
                             >
-                                S'inscrire
+                               Connexion
                             </button>
-                            </div>
+                        </div>
+                        <div className='d-grid mb-3'>
+                            <button 
+                                // onClick={handleGoogleLogin}
+                                className="btn btn-danger"
+                                >
+                                    Connexion avec Google
+                            </button>
+                        </div>
                         <div>
                             <p className="text-right">
-                            Vous n'avez de compte ? <a href="#">Inscrivez-vous</a>
+                            Vous n'avez de compte ? <Link to="/Register"><a href="#">Inscrivez-vous</a></Link>
                             </p>
                         </div>
                     </Form>
@@ -103,4 +116,4 @@ function Register() {
     </div>
   )
 }
-export default Register;
+export default Login;

@@ -8,10 +8,10 @@ const baseUrl = "http://localhost:3000/profil/show";
 
 const Header =  () => {
     const [user,setUser] = useState([]);
-    const [userInfo,setUserInfo] = useState([]);
+    const [userInfo, setUserInfo] = useState([]);
     
     useEffect( ()=>{
-       setUser(JSON.parse(localStorage.getItem('user')))
+       setUser(JSON.parse(localStorage.getItem('user')));
          
         axios.get(baseUrl+`?username=${user.email}`,
          
@@ -64,10 +64,10 @@ const Header =  () => {
     
                     
                     <Dropdown.Item ><Link to="/Profil"> Profil </Link></Dropdown.Item>
-                  {userInfo.isAdmin?<Dropdown.Item ><Link to="/AdminAstuce"> Tous les  Astuces </Link></Dropdown.Item>:
+                  {userInfo.isAdmin?<Dropdown.Item ><Link to="/AdminAstuce"> Toutes les  Astuces </Link></Dropdown.Item>:
                    <Dropdown.Item ><Link to="/UserAstuce">Mes Astuces</Link></Dropdown.Item>  }  
                     <Dropdown.Item ><Link to="/Publier"> Publier une Astuce</Link></Dropdown.Item>
-                    <Dropdown.Item >Se deconnecte</Dropdown.Item>
+                    <Dropdown.Item >Se déconnecter</Dropdown.Item>
                   
                 </NavDropdown>
             </Nav>
@@ -78,16 +78,6 @@ const Header =  () => {
         
         </Navbar>
        
-
-
-
-
-
- 
-
-
-
-
     </header>
    
 );}
