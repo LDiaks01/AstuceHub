@@ -145,7 +145,7 @@ exports.deleteAstuce = async function(req, res){
 
 //approuver une astuce
 exports.approveAstuce = function(req,res){
-    Users.findOne({ where : { pseudo : req.decodedToken.username}})
+    Users.findOne({ where : { email : req.decodedToken.username}})
     .then(user =>{
         if(user.isAdmin)
         {

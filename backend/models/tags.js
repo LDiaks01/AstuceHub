@@ -46,6 +46,7 @@ const AstuceTag = sequelize.define('astuceTag', {
     }
   });
   
+  // relation entities
 Astuces.belongsToMany(Tags, { through: AstuceTag });
 Tags.belongsToMany(Astuces, { through: AstuceTag });
 

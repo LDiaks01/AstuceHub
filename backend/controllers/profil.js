@@ -40,8 +40,8 @@ exports.modifyUser = function(req, res, next){
     const IdUser = req.body.userId;
     if(req.file){
         User.update({ 
-            nom: req.body.nom,
-            prenom : req.body.prenom,
+            nom: req.body.lastName,
+            prenom : req.body.firstName,
             email : req.body.email,
             pseudo : req.body.pseudo,
             imageUrl : req.protocol + '://' + req.get('host') +
@@ -62,8 +62,8 @@ exports.modifyUser = function(req, res, next){
     }
     else{
         User.update({ 
-            nom: req.body.nom,
-            prenom : req.body.prenom,
+            nom: req.body.lastName,
+            prenom : req.body.lastName,
             email : req.body.email,
             pseudo : req.body.pseudo,
             

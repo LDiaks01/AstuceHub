@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const Users = require('../models/users');
 const passport = require('passport');
 
+//déclaration de la google stratégie
 passport.use(
     new GoogleStrategy(
       {
@@ -41,6 +42,7 @@ passport.use(
   
 
 
+  //déclaration de la discord stratégie
   passport.use(new DiscordStrategy({
     clientID: "1057288807151575111",
     clientSecret: "dsiGvWrmYzlkRDXwEPyiGHOA0oqZ8r-a",

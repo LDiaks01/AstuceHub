@@ -9,8 +9,10 @@ exports.getAllUsers = function (req, res) {
     })
     .catch(err => res.status(400).send("Impossible de récuperer les users"));
 }
+
+//fonction pour bannir l'user
 exports.bannUser = async function(req, res){
-    Users.findOne({ where : { pseudo : req.decodedToken.username}})
+    Users.findOne({ where : { email : req.decodedToken.username}})
     .then(user =>{
         if( user.isAdmin)
         {
@@ -19,7 +21,7 @@ exports.bannUser = async function(req, res){
             }, 
             {
                 where: {
-                  pseudo: req.body.username
+                  email: req.body.username
                 }
               })
             .then(() =>{
@@ -38,8 +40,9 @@ exports.bannUser = async function(req, res){
       
 }
 
+//fonction pour débannir l'user
 exports.deBannUser = async function(req, res){
-    Users.findOne({ where : { pseudo : req.decodedToken.username}})
+    Users.findOne({ where : { email : req.decodedToken.username}})
     .then(user =>{
         if( user.isAdmin)
         {
@@ -48,7 +51,7 @@ exports.deBannUser = async function(req, res){
             }, 
             {
                 where: {
-                  pseudo: req.body.username
+                  email: req.body.username
                 }
               })
             .then(() =>{
@@ -69,7 +72,7 @@ exports.deBannUser = async function(req, res){
 
 
 exports.makeAdmin = async function(req, res){
-    Users.findOne({ where : { pseudo : req.decodedToken.username}})
+    Users.findOne({ where : { email : req.decodedToken.username}})
     .then(user =>{
         if( user.isAdmin)
         {
@@ -78,7 +81,7 @@ exports.makeAdmin = async function(req, res){
             }, 
             {
                 where: {
-                  pseudo: req.body.username
+                  email: req.body.username
                 }
               })
             .then(() =>{

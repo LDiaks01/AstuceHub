@@ -12,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const path = require('path');
 app.use('/files', express.static(path.join(__dirname, 'files')));
 
-//cors
+//cors, autorisation de toutes les sources
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
@@ -30,6 +30,8 @@ const astuces = require('./routes/astuce');
 const auth_test = require('./routes/o_auth_login');
 const commentaires = require('./routes/commentaires');
 const users = require('./routes/users');
+
+//différentes routes de notre api
 app.use('/accueil', accueil);
 app.use('/register', register);
 app.use('/login', login);
@@ -39,13 +41,14 @@ app.use('/auth', auth_test);
 app.use('/commentaires', commentaires);
 app.use('/users', users);
 
-
+//Tables de la base de données
 const Users = require('./models/users');
 const Astuces = require('./models/astuces');
 const Commentaires = require('./models/commentaires');
 
 const { Tags, AstuceTag} = require('./models/Tags');
 
+//création automatique des tables, vu que des relatiions existes, certaines doivent attendre la fin des autres
 Users.sync().then(()=>{
 
     Astuces.sync().then(()=>{

@@ -2,6 +2,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const keys = require('../keys/keys');
 const Users = require('./users');
 
+//connexion à la base de données
 const sequelize = new Sequelize(keys.databaseName, keys.username, keys.password, {
     host: keys.host,
     dialect:'mysql',
@@ -49,19 +50,21 @@ const Astuces = sequelize.define('Astuces', {
   
   });
 
+
+  // relation entities
 Users.hasMany(Astuces, {
-    onDelete: 'RESTRICT',
+    onDelete: 'CASCADE',
     onUpdate: 'CASCADE',
     foreignKey: {
       name: 'creator'
     },
-    sourceKey: 'pseudo'
+    sourceKey: 'email'
   });
 Astuces.belongsTo(Users,{
   foreignKey: {
     name: 'creator'
   },
-  targetKey: 'pseudo'
+  targetKey: 'email'
 });
   
 //Exportation de la variable pour un accès en dehors du fichier

@@ -43,16 +43,17 @@ Users.hasMany(Commentaires, {
     foreignKey: {
       name: 'creator'
     },
-    sourceKey: 'pseudo'
+    sourceKey: 'email'
 });
 
 Commentaires.belongsTo(Users,{
   foreignKey: {
     name: 'creator'
   },
-  targetKey: 'pseudo'
+  targetKey: 'email'
 });
 
+  // relation entities
 Astuces.hasMany(Commentaires, {
     onDelete: 'RESTRICT',
     onUpdate: 'CASCADE',
@@ -70,4 +71,3 @@ Commentaires.belongsTo(Astuces,{
 
 //Exportation de la variable pour un accès en dehors du fichier
 module.exports = Commentaires;
-  
