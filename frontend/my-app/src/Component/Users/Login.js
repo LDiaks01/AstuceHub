@@ -5,9 +5,9 @@ import {Formik, Field, Form, ErrorMessage} from 'formik';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import data from '../../model/data';
+
 const baseUrl = "http://127.0.0.1:7000/login/"
-
-
 //Schéma de validation avec Yup
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -30,7 +30,10 @@ const handleSubmit = (values) => {
           axios.post(baseUrl,
             values).then((reponse)=>{
                 if(reponse.data.isConnected) {
-                    localStorage.setItem('user', reponse.data);
+                      reponse.data["email"] = values.email;
+                    
+                     localStorage.setItem('user', JSON.stringify(reponse.data));
+                    
                 };
             }).catch((e)=>console.log(e))
 };

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from '../Header';
-import axios from 'axios'
+import axios from 'axios';
 import {Link} from "react-router-dom";
 const baseUrl = "http://127.0.0.1:7000/register/";
+
 
 
 
