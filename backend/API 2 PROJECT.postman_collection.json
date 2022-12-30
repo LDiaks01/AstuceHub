@@ -1,0 +1,675 @@
+{
+	"info": {
+		"_postman_id": "22e9529e-398b-4d57-a479-31de97678779",
+		"name": "API 2 PROJECT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16866522"
+	},
+	"item": [
+		{
+			"name": "Accueil",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/accueil",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"accueil"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REGISTER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pseudo",
+							"value": "ldiaks10"
+						},
+						{
+							"key": "email",
+							"value": "ldiaks10@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "test"
+						},
+						{
+							"key": "lastName",
+							"value": "diakite diakite"
+						},
+						{
+							"key": "firstName",
+							"value": "lansana lansana"
+						},
+						{
+							"key": "isAdmin",
+							"value": "1"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/user/Pictures/c#1.PNG"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "ldiaks10@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth google à tester dans le navigateur",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/auth/google",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"google"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "auth discord à tester dans le navigateur",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/auth/discord",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"discord"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "show profil d'un utilisateur",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxkaWFrczEwQGdtYWlsLmNvbSIsImlhdCI6MTY3MjQyNTQ2NCwiZXhwIjoxNjcyNTExODY0fQ.-QWRG8ixQyxL7NuzgFHxcrkSeNuEDN4Ff5XGgtTU0qg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/profil/show?username=ldiaks10@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"profil",
+						"show"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "ldiaks10@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modify user personal datas",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxkaWFrczEwQGdtYWlsLmNvbSIsImlhdCI6MTY3MjQyNTQ2NCwiZXhwIjoxNjcyNTExODY0fQ.-QWRG8ixQyxL7NuzgFHxcrkSeNuEDN4Ff5XGgtTU0qg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "pseudo",
+							"value": "ldiakks1",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ldiakls1@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "lastName",
+							"value": "diakite diakite",
+							"type": "text"
+						},
+						{
+							"key": "firstName",
+							"value": "lansana lansana",
+							"type": "text"
+						},
+						{
+							"key": "userId",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/profil/modify",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"profil",
+						"modify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ajout astuce",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxkaWFrczEwQGdtYWlsLmNvbSIsImlhdCI6MTY3MjQyNTQ2NCwiZXhwIjoxNjcyNTExODY0fQ.-QWRG8ixQyxL7NuzgFHxcrkSeNuEDN4Ff5XGgtTU0qg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "titre",
+							"value": "titre 1",
+							"type": "text"
+						},
+						{
+							"key": "contenu",
+							"value": "contenu1",
+							"type": "text"
+						},
+						{
+							"key": "infosAstuce",
+							"value": "infos1",
+							"type": "text"
+						},
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/user/Pictures/Captureha.PNG"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/astuces/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"astuces",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Ajout d'un commentaire",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "creator",
+							"value": "ldiaks05@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "IdAstuce",
+							"value": "4",
+							"type": "text"
+						},
+						{
+							"key": "commentaire",
+							"value": "hello je suis un comment",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/commentaires/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"commentaires",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recuperer toutes les astuces",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxkaWFrczEwQGdtYWlsLmNvbSIsImlhdCI6MTY3MjQyNTQ2NCwiZXhwIjoxNjcyNTExODY0fQ.-QWRG8ixQyxL7NuzgFHxcrkSeNuEDN4Ff5XGgtTU0qg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/astuces/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"astuces",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "recuperer toutes les astuces approuvées",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/astuces/all/approved",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"astuces",
+						"all",
+						"approved"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recuperer une astuce avec ses commentaires",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxkaWFrczEwQGdtYWlsLmNvbSIsImlhdCI6MTY3MjQyNTQ2NCwiZXhwIjoxNjcyNTExODY0fQ.-QWRG8ixQyxL7NuzgFHxcrkSeNuEDN4Ff5XGgtTU0qg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/astuces/show?IdAstuce=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"astuces",
+						"show"
+					],
+					"query": [
+						{
+							"key": "IdAstuce",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "recuperer les astuces d'un utilisateur",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxkaWFrczEwQGdtYWlsLmNvbSIsImlhdCI6MTY3MjQyNTQ2NCwiZXhwIjoxNjcyNTExODY0fQ.-QWRG8ixQyxL7NuzgFHxcrkSeNuEDN4Ff5XGgtTU0qg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/astuces/ldiaks10@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"astuces",
+						"ldiaks10@gmail.com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "supprimer une astuce",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxkaWFrczEwQGdtYWlsLmNvbSIsImlhdCI6MTY3MjQyNTQ2NCwiZXhwIjoxNjcyNTExODY0fQ.-QWRG8ixQyxL7NuzgFHxcrkSeNuEDN4Ff5XGgtTU0qg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/astuces/delete?IdAstuce=6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"astuces",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "IdAstuce",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "approuver une astuce",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxkaWFrczEwQGdtYWlsLmNvbSIsImlhdCI6MTY3MjQyNTQ2NCwiZXhwIjoxNjcyNTExODY0fQ.-QWRG8ixQyxL7NuzgFHxcrkSeNuEDN4Ff5XGgtTU0qg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/astuces/approve?IdAstuce=4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"astuces",
+						"approve"
+					],
+					"query": [
+						{
+							"key": "IdAstuce",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Supprimer un commentaire",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxkaWFrczEwQGdtYWlsLmNvbSIsImlhdCI6MTY3MjQyNTQ2NCwiZXhwIjoxNjcyNTExODY0fQ.-QWRG8ixQyxL7NuzgFHxcrkSeNuEDN4Ff5XGgtTU0qg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/commentaires/delete?idCommentaire=3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"commentaires",
+						"delete"
+					],
+					"query": [
+						{
+							"key": "idCommentaire",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Bannir un user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxkaWFrczEwQGdtYWlsLmNvbSIsImlhdCI6MTY3MjQyNTQ2NCwiZXhwIjoxNjcyNTExODY0fQ.-QWRG8ixQyxL7NuzgFHxcrkSeNuEDN4Ff5XGgtTU0qg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "ldiakls1@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/bann",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"bann"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Debannir un user",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxkaWFrczEwQGdtYWlsLmNvbSIsImlhdCI6MTY3MjQyNTQ2NCwiZXhwIjoxNjcyNTExODY0fQ.-QWRG8ixQyxL7NuzgFHxcrkSeNuEDN4Ff5XGgtTU0qg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "ldiakls1@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/debann",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"debann"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Rendre un user Administrateur",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxkaWFrczEwQGdtYWlsLmNvbSIsImlhdCI6MTY3MjQyNTQ2NCwiZXhwIjoxNjcyNTExODY0fQ.-QWRG8ixQyxL7NuzgFHxcrkSeNuEDN4Ff5XGgtTU0qg",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "ldiakls1@gmail.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/users/makeadmin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"makeadmin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LIste de tous les utlisateurs",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImxkaWFrczEwQGdtYWlsLmNvbSIsImlhdCI6MTY3MjQyNTQ2NCwiZXhwIjoxNjcyNTExODY0fQ.-QWRG8ixQyxL7NuzgFHxcrkSeNuEDN4Ff5XGgtTU0qg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/users/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"all"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
