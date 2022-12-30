@@ -69,7 +69,7 @@ exports.getAstuce = function(req, res){
             attributes: ['IdCommentaire', 'creator', 'commentaire', 'createdAt', 'updatedAt'],
             include: [{
                 model: Users,
-                attributes: ['pseudo', 'imageUrl']
+                attributes: ['pseudo','email', 'imageUrl']
             }]
         }],
         attributes: ['IdAstuce', 'creator','titre', 'infosAstuce', 'contenu', 'imageUrl', 'createdAt', 'updatedAt'],

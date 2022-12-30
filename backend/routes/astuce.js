@@ -7,7 +7,7 @@ const fileLoader = require('../middlewares/add_file')
 
 
 router.put('/add', token_auth, fileLoader, astuce.addAstuce);
-router.get('/all', astuce.findAllAstuces);
+router.get('/all', token_auth, astuce.findAllAstuces);
 router.get('/all/approved', astuce.findAllApprovedAstuces);
 router.get('/show', astuce.getAstuce);
 router.get('/:creator', token_auth, astuce.findAstucesByUser);

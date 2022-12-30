@@ -24,14 +24,15 @@ router.post('/', function(req,res, next) {
         else if(user)
         {
             let token = jwt.sign(
-                {'username' : user.email},
+                {'username' : user.pseudo},
                 'GROUPE_7_JWT_KEY',
                 { expiresIn: '24h'}
             );
             //retourner le token de l'utilisateur qui s'est authentifié
             res.status(200).send({ 
                 isConnected : true,
-                token : token
+                token : token,
+                username : user.pseudo
             });
         }
     })(req, res, next);

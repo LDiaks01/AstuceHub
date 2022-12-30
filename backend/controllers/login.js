@@ -29,7 +29,6 @@ new LocalStrategy(
             })
         .then(user => {
             //Verification du mot de passe hashé
-            console.log(user.password);
             bcrypt.compare(password, user.password)
             .then(result => {
                 if(result) {
